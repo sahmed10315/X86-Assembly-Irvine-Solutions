@@ -3,6 +3,7 @@ Title Exercise 2 from Irvine x86 books
 ; Author : Saad Ahmed
 
 Include Irvine32.inc
+
 .data
 val1 BYTE 'A'
 val2 SBYTE -128
@@ -14,6 +15,7 @@ val6 SDWORD -2147483648
 val7 QWORD 123456712345678h
 val8 TBYTE 1000000000123456789Ah
 val9 REAL4 -1.2
+
 .code
 main PROC
 
