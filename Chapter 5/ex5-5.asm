@@ -1,36 +1,27 @@
-TITLE Chapter 5 Exercise 6              (ch05_06.asm)
+TITLE Chapter 5 Exercise 5              (ch05_05.asm)
 
 INCLUDE Irvine32.inc
 
-STR_COUNT = 20
-STR_SIZE = 10
+COUNT = 50
 
 .data
-aString BYTE STR_SIZE DUP(0),0
+commaStr BYTE ", ",0
 
 .code
 main PROC
-	mov  ecx,STR_COUNT		; outer loop count
+	call Clrscr		; optional: clear screen
+	call Randomize		; optional: reseed random generator
+	mov  ecx,COUNT		; loop counter
 
-L1:	push ecx		; save outer loop count
-
-	; generate a single string
-	mov  ecx,STR_SIZE		; loop counter
-	mov  esi,OFFSET aString		; string index
-
-L2:	mov eax,26		; generate random int (0..25)
+L1:	mov  eax,41		; generate rand int (0..40)
 	call RandomRange
-	add  eax,'A'		; range: 'A'..'Z'
-	mov  [esi],al		; store the character
-	inc  esi		; next character position
-	loop L2
-
-	mov edx,OFFSET aString		; display the string
+	sub  eax,20		; bias to -20..+20 range
+	call WriteInt		; display the integer
+	mov  edx,OFFSET commaStr
 	call WriteString
-	call Crlf
+	loop L1
 
-	pop  ecx		; restore outer loop count
-	loop L1		; repeat outer loop
+	call Crlf
 
 	exit
 main ENDP

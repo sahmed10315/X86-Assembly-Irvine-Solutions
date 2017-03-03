@@ -1,7 +1,10 @@
-TITLE Ch 4 Ex 8
+TITLE Chapter 5 Exercise 8             
 
 INCLUDE Irvine32.inc
- 
+
+CHAR_VALUE = 'A'
+.data
+
 .code
 main PROC
 	call Clrscr
@@ -9,26 +12,25 @@ main PROC
 
 	mov  ecx,16
 L1:	
-	push ecx	
+	push ecx	; vary the background colors
 
 	mov  ecx,16
 	
 	L2:	
-		call SetTextColor	
+		call SetTextColor	; vary the foreground colors
 		push eax
-		mov  al,'S'
+		mov  al,CHAR_VALUE
 		call WriteChar
 		pop  eax
 
-		inc  al	
+		inc  al	; next foreground color
 		loop L2
 
-	sub  al,16	
-	add  al,16	
+	sub  al,16	; reset foreground color to zero
+	add  al,16	; select next background color
 	call Crlf
 
 	pop  ecx
-	
 	loop L1
 
 	mov  eax,7

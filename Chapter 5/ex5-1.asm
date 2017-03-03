@@ -17,7 +17,7 @@ main PROC
 		mov edx,OFFSET str1
 		call WriteString
 		call Crlf
-	add  eax,2
+		add  eax,2
 	loop L1
 	
 	exit
